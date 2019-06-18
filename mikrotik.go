@@ -26,28 +26,6 @@ type Mikrotik struct {
 //
 // ====================================
 
-// Debug activates the debug mode on the library
-func (mik *Mikrotik) Debug(debug bool) {
-	mik.debug = debug
-}
-
-// Close closes the connection with the Mikrotik
-func (mik *Mikrotik) Close() {
-	mik.Conn.Close()
-}
-
-func (mik *Mikrotik) Delay(time string) error {
-	_, err := mik.RunArgs("/delay", "=delay-time="+time)
-
-	return err
-}
-
-func (mik *Mikrotik) Reboot() error {
-	_, err := mik.RunArgs("/system/reboot")
-
-	return err
-}
-
 // setMikrotikCommands sets the relative paths of the commands.
 func (mik *Mikrotik) setMikrotikCommands() {
 	mik.IP = ip{
@@ -127,7 +105,7 @@ func (mik *Mikrotik) setMikrotikCommands() {
 				mikrotik: mik,
 				path:     "/interface/sstp-client",
 			},
-			Server: cfg{mikrotik: mik, path: "/interface/sstp-client/server"},
+			Server: cfg{mikrotik: mik, path: "/interface/sstp-server/server"},
 		},
 		PPPOEClient: cmd{mikrotik: mik, path: "/interface/pppoe-client"},
 		Ethernet:    cmd{mikrotik: mik, path: "/interface/ethernet"},
@@ -144,8 +122,9 @@ func (mik *Mikrotik) setMikrotikCommands() {
 				path:     "/interface/bridge",
 			},
 			Settings: cfg{mikrotik: mik, path: "/interface/bridge/settings"},
-			Port:     cmd{mikrotik: mik, path: "/interface/bridge/ports"},
+			Port:     cmd{mikrotik: mik, path: "/interface/bridge/port"},
 		},
+		VLAN: cmd{mikrotik: mik, path: "/interface/vlan"},
 		Wireless: wireless{
 			cmd: cmd{
 				mikrotik: mik,
