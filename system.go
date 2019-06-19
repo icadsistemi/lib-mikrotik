@@ -127,10 +127,16 @@ type logging struct {
 // ====================================
 
 type resource struct {
-	USB cfg
-	CPU cfg
-	IRQ cfg
-	PCI respci
+	mikrotik *Mikrotik
+	path     string
+	USB      cfg
+	CPU      cfg
+	IRQ      cfg
+	PCI      respci
+}
+
+func (resource *resource) Print(v interface{}) error {
+	return resource.mikrotik.Print(resource.path+"/print", v)
 }
 
 type respci struct {

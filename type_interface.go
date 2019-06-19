@@ -27,6 +27,46 @@ type Interface struct {
 	FpRxPacket       int
 	FpTxPacket       int
 
+	//
+	Running  bool
+	Slave    bool
+	Disabled bool
+	Comment  string
+}
+
+type CompleteInterface struct {
+	ID               string `mikrotik:".id"`
+	Name             string `mikrotik:"name"`
+	DefaultName      string `mikrotik:"default-name"`
+	Type             string
+	MTU              string `mikrotik:"mtu"`
+	ActualMTU        string `mikrotik:"actual-mtu"`
+	L2MTU            string `mikrotik:"l2mtu"`
+	MaxL2MTU         string `mikrotik:"max-l2mtu"`
+	MACAddress       string `mikrotik:"mac-address"`
+	LastLinkDownTime string `mikrotik:"last-link-down-time"`
+	LastLinkUpTime   string `mikrotik:"last-link-up-time"`
+	FastPath         bool
+	LinkDowns        int
+	RxByte           int
+	TxByte           int
+	RxPacket         int
+	TxPacket         int
+	RxDrop           int
+	TxDrop           int
+	RxError          int
+	TxError          int
+	FpRxByte         int
+	FpTxByte         int
+	FpRxPacket       int
+	FpTxPacket       int
+
+	// Added in order to add more infos if we want
+
+	Bridge    string
+	VLAN      string
+	IPAddress []string
+	//
 	Running  bool
 	Slave    bool
 	Disabled bool

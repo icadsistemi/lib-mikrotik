@@ -90,6 +90,31 @@ func (mik *Mikrotik) setMikrotikCommands() {
 
 	mik.System = system{
 		Identity: identity{mikrotik: mik, path: "/system/identity"},
+		Routerboard: sysrouterboard{
+			mikrotik:   mik,
+			path:       "/system/routerboard",
+			Settings:   cfg{mikrotik: mik, path: "/system/routerboard/settings"},
+			ModeButton: cfg{mikrotik: mik, path: "/system/routerboard/mode-button"},
+			USB: usbcfg{
+				cfg{mikrotik: mik, path: "/system/routerboard/usb"},
+			},
+		},
+		Package: syspackage{
+			cmd: cmd{mikrotik: mik, path: "/system/package"},
+			Update: sysupdate{
+				cfg{mikrotik: mik, path: "/system/package/update"},
+			},
+		},
+		Resource: resource{
+			mikrotik: mik,
+			path:     "/system/resource",
+			USB:      cfg{mikrotik: mik, path: "/system/resource/usb"},
+			CPU:      cfg{mikrotik: mik, path: "/system/resource/cpu"},
+			IRQ:      cfg{mikrotik: mik, path: "/system/resource/irq"},
+			PCI: respci{
+				cfg: cfg{mikrotik: mik, path: "/system/resource/pci"},
+			},
+		},
 		NTP: ntp{
 			Client: cfg{mikrotik: mik, path: "/system/ntp/client"},
 		},
