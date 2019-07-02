@@ -151,6 +151,8 @@ type SystemResourceProperties struct {
 	TotalMemory          string `mikrotik:"total-memory"`
 	Uptime               string `mikrotik:"uptime"`
 	Version              string `mikrotik:"version"`
+	VersionNumber        string // Split Version with string.Split(Version , " ")
+	VersionChannel       string
 	WriteSectSinceReboot string `mikrotik:"write-sect-since-reboot"`
 	WriteSectTotal       string `mikrotik:"write-sect-total"`
 }
