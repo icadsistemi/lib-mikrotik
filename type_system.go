@@ -149,6 +149,7 @@ type SystemResourceProperties struct {
 	Platform             string `mikrotik:"platform"`
 	TotalHddSpace        string `mikrotik:"total-hdd-space"`
 	TotalMemory          string `mikrotik:"total-memory"`
+	UsedMemory           string
 	Uptime               string `mikrotik:"uptime"`
 	Version              string `mikrotik:"version"`
 	VersionNumber        string // Split Version with string.Split(Version , " ")
