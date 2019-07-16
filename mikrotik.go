@@ -119,6 +119,16 @@ func (mik *Mikrotik) setMikrotikCommands() {
 			Client: cfg{mikrotik: mik, path: "/system/ntp/client"},
 		},
 		File: file{mikrotik: mik, path: "/file"},
+		User: user{
+			cmd:    cmd{mikrotik: mik, path: "/user"},
+			AAA:    cfg{mikrotik: mik, path: "/user/aaa"},
+			Active: cfg{mikrotik: mik, path: "/user/active"},
+			Group:  cmd{mikrotik: mik, path: "/user/group"},
+			SSHKeys: sshkeys{
+				sshcmds: sshcmds{mikrotik: mik, path: "/user/ssh-keys"},
+				Private: sshcmds{mikrotik: mik, path: "/user/ssh-keys/private"},
+			},
+		},
 	}
 
 	mik.Interface = netinterface{

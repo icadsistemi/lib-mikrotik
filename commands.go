@@ -76,6 +76,7 @@ func (mik *Mikrotik) Add(apipath string, v interface{}) error {
 	}
 
 	if id, ok := re.Done.Map["ret"]; ok {
+		fmt.Println(id)
 		SetID(v, id)
 	}
 
