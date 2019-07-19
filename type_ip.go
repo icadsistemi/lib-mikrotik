@@ -2,7 +2,6 @@ package mikrotik
 
 import (
 	"fmt"
-	"net"
 )
 
 // ====================================
@@ -299,41 +298,65 @@ type IPDNSCacheAll struct {
 // ====================================
 
 type IPFirewallNATRule struct {
-	ID string `mikrotik:".id"`
-
-	Chain  string
-	Action string
-
-	Protocol    string
-	SrcAddress  net.IP
-	DstAddress  net.IP
-	ToAddresses string
-	ToPorts     string
-
-	InInterface  string
-	OutInterface string
-
-	SrcPort int
-	DstPort int
-	Port    int
-
-	PacketMark     string
-	ConnectionMark string
-	RoutingMark    string
-	RoutingTable   string
-
-	ConnectionType string
-
-	Log       bool
-	LogPrefix string
-
-	Bytes    int
-	Packets  int
-	Invalid  bool
-	Dynamic  bool
-	Disabled bool
-
-	Comment string
+	ID                      string `mikrotik:".id"`
+	Action                  string `mikrotik:"action"`
+	AddressList             string `mikrotik:"address-list"`
+	AddressListTimeout      string `mikrotik:"address-list-timeout"`
+	Bytes                   string `mikrotik:"bytes"`
+	Chain                   string `mikrotik:"chain"`
+	Comment                 string `mikrotik:"comment"`
+	ConnectionBytes         string `mikrotik:"connection-bytes"`
+	ConnectionLimit         string `mikrotik:"connection-limit"`
+	ConnectionMark          string `mikrotik:"connection-mark"`
+	ConnectionRate          string `mikrotik:"connection-rate"`
+	ConnectionType          string `mikrotik:"connection-type"`
+	Content                 string `mikrotik:"content"`
+	Disabled                string `mikrotik:"disabled"`
+	Dscp                    int    `mikrotik:"dscp"`
+	DstAddress              string `mikrotik:"dst-address"`
+	DstAddressList          string `mikrotik:"dst-address-list"`
+	DstAddressType          string `mikrotik:"dst-address-type"`
+	DstLimit                string `mikrotik:"dst-limit"`
+	DstPort                 string `mikrotik:"dst-port"`
+	Dynamic                 string `mikrotik:"dynamic"`
+	Fragment                string `mikrotik:"fragment"`
+	Hotspot                 string `mikrotik:"hotspot"`
+	IcmpOptions             string `mikrotik:"icmp-options"`
+	InBridgePort            string `mikrotik:"in-bridge-port"`
+	IngressPriority         int    `mikrotik:"ingress-priority"`
+	InInterface             string `mikrotik:"in-interface"`
+	Invalid                 string `mikrotik:"invalid"`
+	IpsecPolicy             string `mikrotik:"ipsec-policy"`
+	Ipv4Options             string `mikrotik:"ipv4-options"`
+	JumpTarget              string `mikrotik:"jump-target "`
+	Layer7Protocol          string `mikrotik:"layer7-protocol"`
+	Limit                   string `mikrotik:"limit"`
+	Log                     string `mikrotik:"log"`
+	LogPrefix               string `mikrotik:"log-prefix"`
+	Nth                     string `mikrotik:"nth"`
+	OutBridgePort           string `mikrotik:"out-bridge-port"`
+	OutInterface            string `mikrotik:"out-interface"`
+	PacketMark              string `mikrotik:"packet-mark"`
+	Packets                 string `mikrotik:"packets"`
+	PacketSize              string `mikrotik:"packet-size"`
+	PerConnectionClassifier string `mikrotik:"per-connection-classifier"`
+	Port                    int    `mikrotik:"port"`
+	Protocol                string `mikrotik:"protocol"`
+	Psd                     string `mikrotik:"psd"`
+	Random                  int    `mikrotik:"random"`
+	RoutingMark             string `mikrotik:"routing-mark"`
+	RoutingTable            string `mikrotik:"routing-table"`
+	SameNotByDst            bool   `mikrotik:"same-not-by-dst"`
+	SrcAddress              string `mikrotik:"src-address"`
+	SrcAddressList          string `mikrotik:"src-address-list"`
+	SrcAddressType          string `mikrotik:"src-address-type"`
+	SrcMacAddress           string `mikrotik:"src-mac-address"`
+	SrcPort                 int    `mikrotik:"src-port"`
+	TCPMss                  int    `mikrotik:"tcp-mss"`
+	Time                    string `mikrotik:"time"`
+	ToAddresses             string `mikrotik:"to-addresses"`
+	ToPorts                 int    `mikrotik:"to-ports"`
+	TTL                     int    `mikrotik:"ttl"`
 }
 
 const (
@@ -555,4 +578,3 @@ type IPArp struct {
 	MacAddress string `mikrotik:"mac-address"`
 	Published  bool   `mikrotik:"published"`
 }
-
