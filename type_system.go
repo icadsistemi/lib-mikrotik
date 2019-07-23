@@ -90,6 +90,17 @@ type SystemUser struct {
 	Password string
 }
 
+type SystemUserActive struct {
+	ID       string `mikrotik:".id"`
+	Address  string `mikrotik:"address"`
+	Comment  string `mikrotik:"comment"`
+	Disabled string `mikrotik:"disabled"`
+	Group    string `mikrotik:"group"`
+	Name     string `mikrotik:"name"`
+	Via      string `mikrotik:"via"`
+	When     string `mikrotik:"when"`
+}
+
 type SystemUserSSHKeys struct {
 	ID       string `mikrotik :".id"`
 	DSA      bool   `mikrotik :"DSA"`
