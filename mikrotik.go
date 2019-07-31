@@ -134,11 +134,11 @@ func (mik *Mikrotik) setMikrotikCommands() {
 	mik.Interface = netinterface{
 		mikrotik:   mik,
 		path:       "/interface",
-		SSTPClient: cmd{mikrotik: mik, path: "/interface/sstp-server"},
+		SSTPClient: cmd{mikrotik: mik, path: "/interface/sstp-client"},
 		SSTPServer: netsstpserver{
 			cmd: cmd{
 				mikrotik: mik,
-				path:     "/interface/sstp-client",
+				path:     "/interface/sstp-server",
 			},
 			Server: cfg{mikrotik: mik, path: "/interface/sstp-server/server"},
 		},
