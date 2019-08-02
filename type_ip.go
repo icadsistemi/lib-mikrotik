@@ -311,7 +311,7 @@ type IPFirewallNATRule struct {
 	ConnectionRate          string `mikrotik:"connection-rate"`
 	ConnectionType          string `mikrotik:"connection-type"`
 	Content                 string `mikrotik:"content"`
-	Disabled                string `mikrotik:"disabled"`
+	Disabled                bool   `mikrotik:"disabled"`
 	Dscp                    int    `mikrotik:"dscp"`
 	DstAddress              string `mikrotik:"dst-address"`
 	DstAddressList          string `mikrotik:"dst-address-list"`
