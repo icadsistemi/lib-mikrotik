@@ -171,6 +171,7 @@ func (mik *Mikrotik) setMikrotikCommands() {
 
 	mik.PPP = ppp{
 		AAA:        cfg{mikrotik: mik, path: "/ppp/aaa"},
+		Active:     cfg{mikrotik: mik, path: "/ppp/active"},
 		Secret:     cmd{mikrotik: mik, path: "/ppp/secret"},
 		L2tpSecret: cmd{mikrotik: mik, path: "/ppp/l2tp-secret"},
 		Profile:    cmd{mikrotik: mik, path: "/ppp/profile"},
