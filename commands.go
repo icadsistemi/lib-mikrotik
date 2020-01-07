@@ -168,8 +168,18 @@ func (c *cmd) Print(v interface{}) error {
 }
 
 // Find runs a print using the where argument searching for a precise attribute.
-func (c *cmd) Find(where string, v interface{}) error {
-	re, err := c.mikrotik.RunArgs(c.path+"/print", "?"+where)
+func (c *cmd) Find(v interface{}, where ...string) error {
+	re, err := c.mikrotik.RunArgs(c.path+"/print", where...)
+	if err != nil {
+		return err
+	}
+
+	return c.mikrotik.ParseResponce(re, v)
+}
+
+// Find runs a print using the where argument searching for a precise attribute.
+func (c *cmd) FindMultipleArgs(v interface{}, where ...string) error {
+	re, err := c.mikrotik.RunArgs(c.path+"/print", where...)
 	if err != nil {
 		return err
 	}
@@ -275,5 +285,25 @@ func (ssh *sshcmds) Find(where string, v interface{}) error {
 func (ssh *sshcmds) Import(user, keyfile string) error {
 	_, err := ssh.mikrotik.RunArgs(ssh.path+"/import", "=public-key-file="+keyfile, "=user="+user)
 
+	return err
+}
+
+// ===============================
+//
+// Firewall CMDs
+//
+// ===============================
+
+type firewallOptionsCMD struct {
+	cmd
+}
+
+func (ff *firewallOptionsCMD) ResetCounters(id string) error {
+	_, err := ff.cmd.mikrotik.RunArgs(ff.cmd.path+"/reset-counters", "=numbers="+id)
+	return err
+}
+
+func (ff *firewallOptionsCMD) ResetCountersAll() error {
+	_, err := ff.cmd.mikrotik.RunArgs(ff.cmd.path + "/reset-counters-all")
 	return err
 }

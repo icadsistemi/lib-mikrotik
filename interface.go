@@ -53,6 +53,15 @@ func (c *netinterface) Find(where string, v interface{}) error {
 	return c.mikrotik.ParseResponce(re, v)
 }
 
+func (c *netinterface) FindMultipleArgs(v interface{}, where ...string) error {
+	re, err := c.mikrotik.RunArgs(c.path+"/print", where...)
+	if err != nil {
+		return err
+	}
+
+	return c.mikrotik.ParseResponce(re, v)
+}
+
 func (c *netinterface) GetByName(name string, v interface{}) error {
 	re, err := c.mikrotik.RunArgs(c.path+"/print", "?name="+name)
 	if err != nil {

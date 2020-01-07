@@ -13,6 +13,7 @@ type Mikrotik struct {
 	connMutex sync.Mutex
 
 	IP        ip
+	IPv6      ipv6
 	System    system
 	Interface netinterface
 	PPP       ppp
@@ -32,9 +33,13 @@ func (mik *Mikrotik) setMikrotikCommands() {
 		Address: cmd{mikrotik: mik, path: "/ip/address"},
 		Route:   cmd{mikrotik: mik, path: "/ip/route"},
 		Firewall: firewallCMD{
-			NAT:    cmd{mikrotik: mik, path: "/ip/firewall/nat"},
-			Mangle: cmd{mikrotik: mik, path: "/ip/firewall/mangle"},
-			Filter: firewallFilterCMD{
+			NAT: firewallOptionsCMD{
+				cmd: cmd{mikrotik: mik, path: "/ip/firewall/nat"},
+			},
+			Mangle: firewallOptionsCMD{
+				cmd: cmd{mikrotik: mik, path: "/ip/firewall/mangle"},
+			},
+			Filter: firewallOptionsCMD{
 				cmd: cmd{mikrotik: mik, path: "/ip/firewall/filter"},
 			},
 		},
@@ -175,6 +180,30 @@ func (mik *Mikrotik) setMikrotikCommands() {
 		Secret:     cmd{mikrotik: mik, path: "/ppp/secret"},
 		L2tpSecret: cmd{mikrotik: mik, path: "/ppp/l2tp-secret"},
 		Profile:    cmd{mikrotik: mik, path: "/ppp/profile"},
+	}
+
+	mik.IPv6 = ipv6{
+		Firewall: firewallv6CMD{
+			AddressList: cmd{mikrotik: mik, path: "/ipv6/firewall/address-list"},
+			Connection:  sshcmds{mikrotik: mik, path: "/ipv6/firewall/connection"},
+			Mangle: firewallOptionsCMD{
+				cmd: cmd{mikrotik: mik, path: "/ipv6/firewall/mangle"},
+			},
+			Filter: firewallOptionsCMD{
+				cmd: cmd{mikrotik: mik, path: "/ipv6/firewall/filter"},
+			},
+			RAW: firewallOptionsCMD{
+				cmd: cmd{mikrotik: mik, path: "/ipv6/firewall/raw"},
+			},
+		},
+		ND: ndv6CMD{
+			cmd: cmd{mikrotik: mik, path: "/ipv6/nd"},
+			Prefix: ndPrefixCMD{
+				cmd:     cmd{mikrotik: mik, path: "/ipv6/nd/prefix"},
+				Default: cfg{mikrotik: mik, path: "/ipv6/nd/prefix/default"},
+			},
+		},
+		Settings: cfg{mikrotik: mik, path: "/ipv6/settings"},
 	}
 }
 

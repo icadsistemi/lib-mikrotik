@@ -10,7 +10,7 @@ var mikrotik *Mikrotik
 func init() {
 	log.SetFlags(log.Lshortfile)
 
-	addr := "192.168.107.78:8728"
+	addr := "192.168.2.252:8728"
 	user := "admin"
 	pass := ""
 

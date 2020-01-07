@@ -160,23 +160,9 @@ func (dnsc *dnsCacheCMD) Flush() error {
 // ====================================
 
 type firewallCMD struct {
-	NAT    cmd
-	Mangle cmd
-	Filter firewallFilterCMD
-}
-
-type firewallFilterCMD struct {
-	cmd
-}
-
-func (ff *firewallFilterCMD) ResetCounters(id string) error {
-	_, err := ff.cmd.mikrotik.RunArgs(ff.cmd.path+"/reset-counters", "=numbers="+id)
-	return err
-}
-
-func (ff *firewallFilterCMD) ResetCountersAll() error {
-	_, err := ff.cmd.mikrotik.RunArgs(ff.cmd.path + "/reset-counters-all")
-	return err
+	NAT    firewallOptionsCMD
+	Mangle firewallOptionsCMD
+	Filter firewallOptionsCMD
 }
 
 // ====================================
