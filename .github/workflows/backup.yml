@@ -1,0 +1,17 @@
+name: Backup Repository to AWS S3
+on:
+  push:
+    branches: [ "master", "main", "production" ]
+  pull_request:
+    branches: [ "master", "main", "production" ]
+    types: [closed]
+jobs:
+  backup:
+    name: "Backup Repository to AWS S3"
+    uses: icadsistemi/is.github.workflows/.github/workflows/aws_backup_to_s3.yml@master
+    secrets:
+      AWS_S3_BACKUP_BUCKET_NAME: ${{ secrets.AWS_S3_BACKUP_BUCKET_NAME }}
+      AWS_S3_BACKUP_ACCESS_KEY_ID: ${{ secrets.AWS_S3_BACKUP_ACCESS_KEY_ID }}
+      AWS_S3_BACKUP_SECRET_ACCESS_KEY: ${{ secrets.AWS_S3_BACKUP_SECRET_ACCESS_KEY }}
+      AWS_S3_EXTERNAL_ID: ${{ secrets.AWS_S3_EXTERNAL_ID }}
+      AWS_S3_BACKUP_ROLE: ${{ secrets.AWS_S3_BACKUP_ROLE }}
