@@ -5,6 +5,7 @@ on:
   pull_request:
     branches: [ "master", "main", "production" ]
     types: [closed]
+  workflow_dispatch:
 jobs:
   backup:
     name: "Backup Repository to AWS S3"
